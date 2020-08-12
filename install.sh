@@ -149,10 +149,3 @@ cd ~/.rice
 
 # update mlocate db
 sudo updatedb
-
-# create some things needed
-echo -e "\
-   first task of your new machine: mopidy gmusic login\n\
-   second task: click the tao icon\n\
-   third task: click, middle click, middle click, and right click the START FOCUS icon \n\
-   fourth task: reboot maybe?" > ~/STACK.txt

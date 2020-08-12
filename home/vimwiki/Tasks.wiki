@@ -1,0 +1,4 @@
+- [ ] mopidy gmusic login
+- [ ] click the tao icon
+- [ ] click, middle click, middle click, and right click the START FOCUS icon
+- [ ] reboot maybe?

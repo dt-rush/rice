@@ -1,0 +1,4 @@
+== My Wiki ==
+
+- [[Tasks]]
+- [[Scratchpad]]

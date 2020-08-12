@@ -23,7 +23,7 @@ alert = #bd2c40
 
 [bar/example]
 
-modules-left = i3 stack
+modules-left = i3 tasks
 modules-center = potatotimer
 modules-right = pulseaudio wlan eth memory cpu temperature date battery tao
 
@@ -357,10 +357,10 @@ interval = 0.1
 format-underline = #800
 format-font = 4
 
-[module/stack]
+[module/tasks]
 type = custom/script
 click-left = i3-msg '[con_mark="scratch-edit2"] scratchpad show'
-exec = cat ~/STACK.txt | head -n 1
+exec = cat ~/vimwiki/Tasks.wiki | grep -v "\[X\]" | head -n 1 | sed 's/- \[ \] //'
 interval = 0.1
 format-padding = 5
 format-background = #fdf6e3
