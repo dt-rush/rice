@@ -5,10 +5,10 @@ rm ~/.scratch*sw* 2>/dev/null || true
 profile="${1:-1}"
 case $profile in
     1)
-        filelist="~/scratch"
+        filelist="~/vimwiki/Scratchpad.wiki"
         ;;
     2)
-        filelist="~/STACK.txt"
+        filelist="~/vimwiki/Tasks.wiki"
         ;;
 esac
 terminator --title "scratch-edit${1:-1}" --command "vim -n ${filelist}"
