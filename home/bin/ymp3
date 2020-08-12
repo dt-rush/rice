@@ -1,0 +1,27 @@
+#!/bin/bash
+
+URL=$1
+ARTIST=$2
+TRACK=$3
+
+if [[ -z $ARTIST && -z $TRACK ]]; then
+  echo "MUST USE FORMAT 'ymp3 \$url \$artist \$track'"
+  exit 1
+  # FILENAME=$(curl -L "$URL"  | sed -rn '/watch-title/ s/.*title="(.+)".*/\1/p').mp3
+else
+  FILENAME="$ARTIST-$TRACK"
+fi
+
+
+echo "downloading ${FILENAME} from youtube..."
+youtube-dl $URL -o "$FILENAME.m4a" -f 'bestaudio[ext=m4a]'
+if [[ $? != 0 ]]; then
+  youtube-dl $URL -o "$FILENAME.m4a"
+  echo "downloading next best quality..."
+fi
+echo "converting to mp3..."
+ffmpeg -y -loglevel panic -i "$FILENAME.m4a" -vn -acodec libmp3lame -ac 2 -ab 180k -ar 48000 "$FILENAME.mp3"
+# echo "removing m4a file..."
+rm "$FILENAME.m4a"
+echo "[complete] downloaded: $FILENAME.mp3"
+

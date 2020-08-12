@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo -e "\
+              |XXXXXXXXX       X                 \n\
+            |XXXXXXXX|          XX|              \n\
+         |XXXXXXXX|               XXX            \n\
+      |XXXXXXXXXX                  XXXX          \n\
+    XXXXXXXXX XXXXX                XXXXXX        \n\
+     |XXX|      |XXXX|              XXXXXX       \n\
+       |           XXXXX            XXXXXX|      \n\
+                     |XXXX|         XXXXXXX      \n\
+                        XXXXX       XXXXXXX      \n\
+                          |XXXX|   XXXXXXX|      \n\
+                             XXXX|XXXXXXXX       \n\
+          XX                   XXXXXXXXXX        \n\
+        ,XXXXXX|          |XXXXXXXXXXXXX         \n\
+      ,XXXX XXXXXXXXXXXXXXXXXXXXXXXX|XXXX|       \n\
+    ,XXXX'     XXXXXXXXXXXXXXXXXX|'    XXXXX     \n\
+  ,XXXX'            XXXXXXX              |XXXX|  \n\
+ XXXX'                                      XXXXX\n\
+ ~XX                                          XX~\n\
+XXX"

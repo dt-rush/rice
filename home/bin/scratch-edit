@@ -1,0 +1,14 @@
+#!/bin/bash
+
+rm ~/.scratch*sw* 2>/dev/null || true
+
+profile="${1:-1}"
+case $profile in
+    1)
+        filelist="~/scratch"
+        ;;
+    2)
+        filelist="~/STACK.txt"
+        ;;
+esac
+terminator --title "scratch-edit${1:-1}" --command "vim -n ${filelist}"

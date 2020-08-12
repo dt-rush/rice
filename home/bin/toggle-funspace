@@ -1,0 +1,11 @@
+#!/bin/bash
+
+current=$(i3-msg -t get_workspaces | jq '.[] | select(.visible==true).name')
+
+if [ "$current" == "\"funspace\"" ]; then
+    i3-msg workspace back_and_forth
+    wallpaper default
+else
+    i3-msg workspace funspace
+    wallpaper fun
+fi

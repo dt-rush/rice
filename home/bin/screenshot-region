@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SCREENSHOT_DIR="$HOME/Pictures/screenshots"
+
+DATE_TIME_STR=$(date +%d-%m-%Y_%I:%M:%S_%p)
+
+# thanks be to the most high for imagemagick
+import $SCREENSHOT_DIR/screenshot-$DATE_TIME_STR.png
+
+

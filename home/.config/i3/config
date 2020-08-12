@@ -1,0 +1,289 @@
+# i3 config file
+# author: dt-rush (based off okubax's dotfiles)
+
+# set mod to windows key
+set $mod Mod4
+floating_modifier $mod
+popup_during_fullscreen smart
+
+gaps inner 20
+gaps outer 0
+
+for_window [class="^.*"] border pixel 0
+
+#
+# floating rules for specific apps
+#
+
+# minecraft launcher should float
+for_window [title="Minecraft Launcher"] floating enable;
+# R graphics windows should float
+for_window [class="R_x11"] floating enable;
+# simple calendar popup (mod+c) should float
+for_window [title="gsimplecal"] floating enable;
+# file-manager should float
+for_window [class="Nautilus"] floating enable, move center;
+# xev should float
+for_window [title="Event Tester"] floating enable, move center;
+# any pop-ups should float
+for_window [window_role="pop-up"] floating enable, move center;
+# shotwell should float
+for_window [class="Shotwell"] floating enable, move center;
+# terminator preferences should float
+for_window [title="Terminator Preferences"] floating enable, move center;
+# save-as dialogs should float
+for_window [title="Save As"] resize set 800 px 600 px;
+# float anything beginning with float-
+for_window [title="float-.+"] floating enable;
+
+
+default_orientation vertical
+
+bindsym $mod+Shift+Y reload
+bindsym $mod+Shift+R restart
+bindsym $mod+q kill
+# why would this ever be a needed combo god damn
+# bindsym $mod+Shift+E exit
+bindsym $mod+f fullscreen
+bindsym $mod+shift+f floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+bar split h
+bindsym $mod+underscore split v
+bindsym $mod+z layout default
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+
+# assign workspaces to outputs
+# workspace $ws1 output eDP-1
+# workspace $ws2 output eDP-1
+# workspace $ws3 output eDP-1
+# workspace $ws4 output eDP-1
+# workspace $ws5 output eDP-1
+# workspace $ws6 output eDP-1
+# workspace $ws7 output eDP-1
+# workspace $ws8 output eDP-1
+# workspace $ws9 output eDP-1
+# workspace $ws10 output eDP-1
+
+# switch to workspace
+bindsym $mod+1 exec "i3-msg workspace $ws1"
+bindsym $mod+2 exec "i3-msg workspace $ws2"
+bindsym $mod+3 exec "i3-msg workspace $ws3"
+bindsym $mod+4 exec "i3-msg workspace $ws4"
+bindsym $mod+5 exec "i3-msg workspace $ws5"
+bindsym $mod+6 exec "i3-msg workspace $ws6"
+bindsym $mod+7 exec "i3-msg workspace $ws7"
+bindsym $mod+8 exec "i3-msg workspace $ws8"
+bindsym $mod+9 exec "i3-msg workspace $ws9"
+bindsym $mod+0 exec "i3-msg workspace $ws10"
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# NAMED workspaces
+bindsym $mod+Shift+t exec "~/bin/toggle-termspace"
+bindsym $mod+control+mod1+t move container to workspace termspace
+
+bindsym $mod+p exec "~/bin/toggle-pomspace"
+bindsym $mod+control+mod1+p move container to workspace pomspace
+
+bindsym $mod+Shift+n exec "~/bin/toggle-notespace"
+bindsym $mod+control+mod1+n move container to workspace notespace
+
+bindsym $mod+u exec "~/bin/toggle-k8sspace"
+bindsym $mod+control+mod1+u move container to workspace k8sspace
+
+bindsym $mod+semicolon exec "~/bin/toggle-funspace"
+
+
+#
+# workspace assignments
+#
+
+#
+# window movement
+#
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# tab between workspaces
+bindsym $mod+Tab exec "i3-msg workspace back_and_forth"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink height 3 px or 3 ppt
+        bindsym k resize grow height 3 px or 3 ppt
+        bindsym l resize grow width 3 px or 3 ppt
+        bindsym h resize shrink width 3 px or 3 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 3 px or 3 ppt
+        bindsym Down resize grow height 3 px or 3 ppt
+        bindsym Up resize shrink height 3 px or 3 ppt
+        bindsym Right resize grow width 3 px or 3 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+
+#
+# scratchpad
+#
+
+# pavucontrol
+for_window [title="^Volume Control$"] mark "scratch-vol", move absolute position 200 px 200 px, resize set 800 px 600 px, move scratchpad
+bindsym $mod+v [con_mark="scratch-vol"] scratchpad show
+exec --no-startup-id pavucontrol
+
+# pulseeffects
+for_window [title="^PulseEffects$"] mark "scratch-eq", move absolute position 200 px 200 px, resize set 800 px 600 px, move scratchpad
+bindsym $mod+shift+v [con_mark="scratch-eq"] scratchpad show
+exec --no-startup-id pulseeffects
+
+# chrome tabs outliner
+for_window [title="^Tabs Outliner$"] mark "scratch-tabs", move absolute position 0 px 0 px, move scratchpad
+# for_window [title="^Sidewise$"] mark "scratch-tabs", move absolute position 0 px 0 px, resize set 400px 900px, move scratchpad
+bindsym $mod+o [con_mark="scratch-tabs"] scratchpad show
+
+# chrome admin window
+bindsym $mod+shift+control+a mark "scratch-admin", move absolute position 10 px 10 px, resize set 1200 px 600 px, move scratchpad
+bindsym $mod+shift+a [con_mark="scratch-admin"] scratchpad show
+
+# editor
+for_window [title="^scratch-edit1$"] mark "scratch-edit1", move scratchpad
+bindsym $mod+e [con_mark="scratch-edit1"] scratchpad show
+exec --no-startup-id ~/bin/scratch-edit 1
+# editor 2
+for_window [title="^scratch-edit2$"] mark "scratch-edit2", move scratchpad
+bindsym $mod+shift+e [con_mark="scratch-edit2"] scratchpad show
+exec --no-startup-id ~/bin/scratch-edit 2
+
+
+# pop-up terminal
+for_window [title="^scratch-term$"] mark "scratch-term", move scratchpad
+bindsym $mod+t [con_mark="scratch-term"] scratchpad show
+exec --no-startup-id ~/bin/scratch-term
+
+# pop-up music
+for_window [title="^scratch-music$"] mark "scratch-music", move scratchpad
+bindsym $mod+m [con_mark="scratch-music"] scratchpad show
+exec --no-startup-id ~/bin/scratch-music
+
+# calculator
+for_window [class="Gnome-calculator"] mark "scratch-calculator", move scratchpad
+bindsym $mod+shift+c [con_mark="scratch-calculator"] scratchpad show
+exec --no-startup-id gnome-calculator
+
+# floatyboi (generic scratchpad)
+bindsym $mod+Shift+period mark "floatyboi", move scratchpad
+bindsym $mod+period [con_mark="floatyboi"] scratchpad show
+
+# floatyboi (generic scratchpad)
+bindsym $mod+Shift+comma mark "2floatyboi2", move scratchpad
+bindsym $mod+comma [con_mark="2floatyboi2"] scratchpad show
+
+# scratchpad cycle
+bindsym $mod+Shift+underscore scratchpad show
+
+# toggle monitor
+bindsym XF86Display exec --no-startup-id ~/bin/toggle_monitor.sh
+# toggle monitor with fn+esc on truly ergonomic keyboard (sends "Hiragana")
+bindsym Hiragana exec --no-startup-id ~/bin/toggle_monitor.sh
+# toggle monitor
+bindsym control+mod1+m exec --no-startup-id ~/bin/toggle_monitor.sh
+# restore monitor
+bindsym $mod+esc exec --no-startup-id ~/bin/restore_monitor.sh
+
+# Audio Controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id amixer set Master 1+ toggle
+
+# Brightness controls
+bindsym XF86MonBrightnessUp exec ~/bin/brightness.sh +10
+bindsym XF86MonBrightnessDown exec ~/bin/brightness.sh -10
+
+# d4 menu
+bindsym $mod+d exec --no-startup-id ~/bin/dmen.sh
+
+# terminals
+bindsym control+mod1+t exec --no-startup-id x-terminal-emulator
+
+# apps
+bindsym control+mod1+f exec --no-startup-id nautilus
+bindsym control+mod1+c exec --no-startup-id google-chrome-stable
+bindsym control+mod1+s exec --no-startup-id x-terminal-emulator --command scratch
+bindsym control+mod1+e exec --no-startup-id x-terminal-emulator --command vim
+
+# Print screen
+bindsym --release Print exec gnome-screenshot -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
+bindsym --release control+shift+F5 exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
+bindsym --release Control+Print exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
+bindsym --release Shift+Print exec gnome-screenshot --window -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
+
+# screen lock
+bindsym control+mod1+l exec --no-startup-id ~/.i3/i3lock-multimonitor/lock -i ~/Pictures/neo.jpg
+
+# popup calendar
+bindsym $mod+c exec --no-startup-id gsimplecal
+
+
+# program autostart
+#
+exec --no-startup-id bash ~/.xinitrc &
+exec --no-startup-id mopidy &
+exec --no-startup-id potato-timer-server &
+exec --no-startup-id POLYBAR_SHELL=zsh polybar example &
+# exec --no-startup-id xrandr --dpi 100 &
+exec --no-startup-id redshift -l geoclue2 &
+# exec --no-startup-id compton &
+exec --no-startup-id xcompmgr -n &
+exec --no-startup-id xbindkeys &
+exec --no-startup-id ~/bin/battery-warn-cron.js
+exec_always --no-startup-id ~/bin/wallpaper randomcity
+
+# python script defining more complex actions once all the above is done
+exec_always --no-startup-id ~/bin/i3-exec-always.py 2>&1 | tee .i3_exec_always.log &
+

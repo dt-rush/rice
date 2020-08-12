@@ -1,0 +1,6 @@
+#!/bin/bash
+
+emacs --batch -Q -l ~/.emacs \
+      -l ~/workspace/github.com/Lindydancer/e2ansi/e2ansi-magic.el \
+      -l ~/workspace/github.com/Lindydancer/e2ansi/bin/e2ansi-cat \
+      --theme "jazz" $1 2> /dev/null

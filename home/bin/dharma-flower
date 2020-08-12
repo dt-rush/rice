@@ -1,0 +1,3 @@
+#!/bin/bash
+
+jp2a ~/Pictures/dharma-wheel.jpg --width=64 --invert

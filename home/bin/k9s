@@ -1,0 +1,3 @@
+#!/bin/bash
+
+/home/linuxbrew/.linuxbrew/bin/k9s $@ | sed -e 's/Boom!!/Ah, /'

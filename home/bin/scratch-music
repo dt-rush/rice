@@ -1,0 +1,3 @@
+#!/bin/bash
+
+terminator -p dark --title "scratch-music" --command "ncmpcpp"
