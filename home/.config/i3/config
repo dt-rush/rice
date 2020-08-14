@@ -22,17 +22,20 @@ for_window [class="R_x11"] floating enable;
 # simple calendar popup (mod+c) should float
 for_window [title="gsimplecal"] floating enable;
 # file-manager should float
-for_window [class="Nautilus"] floating enable, move center;
-# xev should float
-for_window [title="Event Tester"] floating enable, move center;
+for_window [class="Nautilus"] floating enable;
+for_window [class="Nautilus"] resize set 800 px 600 px; for_window [class="Nautilus"] move absolute position 50 px 50 px; # xev should float
+for_window [title="Event Tester"] floating enable, move center
 # any pop-ups should float
-for_window [window_role="pop-up"] floating enable, move center;
-# shotwell should float
-for_window [class="Shotwell"] floating enable, move center;
+for_window [window_role="pop-up"] floating enable, move center
+for_window [class="Shotwell"] floating enable, move center
 # terminator preferences should float
-for_window [title="Terminator Preferences"] floating enable, move center;
+for_window [title="Terminator Preferences"] floating enable, move center
 # save-as dialogs should float
 for_window [title="Save As"] resize set 800 px 600 px;
+# sidewise should not float
+for_window [title="Sidewise"] floating disable;
+# Kazam should float
+for_window [class="Kazam"] floating enable;
 # float anything beginning with float-
 for_window [title="float-.+"] floating enable;
 
@@ -51,54 +54,32 @@ bindsym $mod+bar split h
 bindsym $mod+underscore split v
 bindsym $mod+z layout default
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-set $ws1 1
-set $ws2 2
-set $ws3 3
-set $ws4 4
-set $ws5 5
-set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws10 10
-
-# assign workspaces to outputs
-# workspace $ws1 output eDP-1
-# workspace $ws2 output eDP-1
-# workspace $ws3 output eDP-1
-# workspace $ws4 output eDP-1
-# workspace $ws5 output eDP-1
-# workspace $ws6 output eDP-1
-# workspace $ws7 output eDP-1
-# workspace $ws8 output eDP-1
-# workspace $ws9 output eDP-1
-# workspace $ws10 output eDP-1
-
 # switch to workspace
-bindsym $mod+1 exec "i3-msg workspace $ws1"
-bindsym $mod+2 exec "i3-msg workspace $ws2"
-bindsym $mod+3 exec "i3-msg workspace $ws3"
-bindsym $mod+4 exec "i3-msg workspace $ws4"
-bindsym $mod+5 exec "i3-msg workspace $ws5"
-bindsym $mod+6 exec "i3-msg workspace $ws6"
-bindsym $mod+7 exec "i3-msg workspace $ws7"
-bindsym $mod+8 exec "i3-msg workspace $ws8"
-bindsym $mod+9 exec "i3-msg workspace $ws9"
-bindsym $mod+0 exec "i3-msg workspace $ws10"
+bindsym $mod+1 exec "i3-msg workspace number 1"
+bindsym $mod+2 exec "i3-msg workspace number 2"
+bindsym $mod+3 exec "i3-msg workspace number 3"
+bindsym $mod+4 exec "i3-msg workspace number 4"
+bindsym $mod+5 exec "i3-msg workspace number 5"
+bindsym $mod+6 exec "i3-msg workspace number 6"
+bindsym $mod+7 exec "i3-msg workspace number 7"
+bindsym $mod+8 exec "i3-msg workspace number 8"
+bindsym $mod+9 exec "i3-msg workspace number 9"
+bindsym $mod+0 exec "i3-msg workspace number 10"
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# add/remove named labels on workspaces
+bindsym $mod+n exec "~/bin/i3-rename-workspace"
 
 # NAMED workspaces
 bindsym $mod+Shift+t exec "~/bin/toggle-termspace"
@@ -115,10 +96,6 @@ bindsym $mod+control+mod1+u move container to workspace k8sspace
 
 bindsym $mod+semicolon exec "~/bin/toggle-funspace"
 
-
-#
-# workspace assignments
-#
 
 #
 # window movement
@@ -216,13 +193,11 @@ for_window [class="Gnome-calculator"] mark "scratch-calculator", move scratchpad
 bindsym $mod+shift+c [con_mark="scratch-calculator"] scratchpad show
 exec --no-startup-id gnome-calculator
 
-# floatyboi (generic scratchpad)
-bindsym $mod+Shift+period mark "floatyboi", move scratchpad
-bindsym $mod+period [con_mark="floatyboi"] scratchpad show
-
-# floatyboi (generic scratchpad)
-bindsym $mod+Shift+comma mark "2floatyboi2", move scratchpad
-bindsym $mod+comma [con_mark="2floatyboi2"] scratchpad show
+# generic flaots assignable on . and ,
+bindsym $mod+Shift+period mark "periodfloat", move scratchpad
+bindsym $mod+period [con_mark="^periodfloat$"] scratchpad show
+bindsym $mod+Shift+comma mark "commafloat", move scratchpad
+bindsym $mod+comma [con_mark="^commafloat$"] scratchpad show
 
 # scratchpad cycle
 bindsym $mod+Shift+underscore scratchpad show
@@ -245,6 +220,10 @@ bindsym XF86AudioMute exec --no-startup-id amixer set Master 1+ toggle
 bindsym XF86MonBrightnessUp exec ~/bin/brightness.sh +10
 bindsym XF86MonBrightnessDown exec ~/bin/brightness.sh -10
 
+#
+# apps
+#
+
 # d4 menu
 bindsym $mod+d exec --no-startup-id ~/bin/dmen.sh
 
@@ -257,15 +236,16 @@ bindsym control+mod1+c exec --no-startup-id google-chrome-stable
 bindsym control+mod1+s exec --no-startup-id x-terminal-emulator --command scratch
 bindsym control+mod1+e exec --no-startup-id x-terminal-emulator --command vim
 
+
 # Print screen
 bindsym --release Print exec gnome-screenshot -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
 bindsym --release control+shift+F5 exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
 bindsym --release Control+Print exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
 bindsym --release Shift+Print exec gnome-screenshot --window -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
 
-# screen lock
-bindsym control+mod1+l exec --no-startup-id ~/.i3/i3lock-multimonitor/lock -i ~/Pictures/neo.jpg
-
+bindsym $mod+g exec --no-startup-id gender-fr
+# bindsym control+mod1+l exec --no-startup-id i3lock-fancy -p -- scrot -z
+bindsym control+mod1+l exec --no-startup-id ~/.i3/i3lock-multimonitor/lock -i ~/Pictures/wallpapers/thematrixhasyou/neo.jpg
 # popup calendar
 bindsym $mod+c exec --no-startup-id gsimplecal
 

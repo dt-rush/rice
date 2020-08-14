@@ -122,7 +122,7 @@ sudo apt-get -fy install \
    dmenu ncmpcpp terminator autojump \
    feh nautilus gpicview gsimplecal \
    gnome-screenshot redshift xcompmgr \
-   xbindkeys
+   xbindkeys jq
 # potato timer
 npm i -g potato-timer
 # mopidy
