@@ -360,13 +360,12 @@ format-font = 4
 [module/tasks]
 type = custom/script
 click-left = i3-msg '[con_mark="scratch-edit2"] scratchpad show'
-exec = cat ~/vimwiki/Tasks.wiki | grep -v "\[X\]" | head -n 1 | sed 's/- \[ \] //'
+exec = ~/bin/taskdisplay.sh
 interval = 0.1
 format-padding = 5
 format-background = #fdf6e3
 format-foreground = #000
 format-font = 4
-format-margin-right = 0
 
 [module/tao]
 type = custom/text
