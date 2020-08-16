@@ -39,6 +39,10 @@
 "xbindkeys_show"
    control+shift + q
 
+#Shift Page Up
+"xdotool key --delay 0 --clearmodifiers Shift+Page_Up"
+   Release + Control+Alt + Up
+
 #Page Up
 "xdotool key --delay 0 --clearmodifiers Page_Up"
    Release + Control + Up
@@ -46,6 +50,10 @@
 #Home
 "xdotool key --delay 0 --clearmodifiers Home"
    Release + Alt + Up
+
+#Shift Page Down
+"xdotool key --delay 0 --clearmodifiers Shift+Page_Down"
+   Release + Control + Alt + Down
 
 #Page Down
 "xdotool key --delay 0 --clearmodifiers Page_Down"
