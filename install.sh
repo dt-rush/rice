@@ -54,7 +54,7 @@ cp -r ./home/.oh-my-zsh/custom/. ~/.oh-my-zsh/custom/
 # install i3gaps
 header "INSTALL I3GAPS"
 git clone https://github.com/Airblader/i3 ~/github.com/i3gaps
-cd ~/github.com/i3gaps
+pushd ~/github.com/i3gaps
 # dependencies
 sudo apt-get -fy install \
     dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev
@@ -66,7 +66,7 @@ mkdir -p build/ && cd build/
 make -j8
 sudo make install
 cd .. && rm -rf build
-cd ~/.rice
+popd
 
 # install nvm
 header "INSTALL NVM"
@@ -115,13 +115,28 @@ sudo apt-add-repository 'deb-src http://deb.debian.org/debian buster-backports m
 sudo apt-get update
 sudo apt -t buster-backports -fy install polybar
 
+# alacritty
+sudo apt-get -fy install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-dev python3
+# requires rust compiler
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+PATH=$PATH:~/.cargo/bin
+rustup override set stable
+rustup update stable
+git clone https://github.com/alacritty ~/github.com/alacritty
+pushd ~/github.com/alacritty
+cargo build --release
+sudo cp ./target/release/alacritty /usr/local/bin/
+sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which alacritty) 20
+sudo update-alternatives --set x-terminal-emulator /usr/local/bin/alacritty
+
 # install a bunch of sweet stuff
 header "INSTALL MISC"
 # misc
 sudo apt-get -fy install \
-   dmenu ncmpcpp terminator autojump \
+   dmenu ncmpcpp autojump \
    feh nautilus gpicview gsimplecal \
-   gnome-screenshot redshift xcompmgr \
+   gnome-screenshot redshift compton \
    xbindkeys jq
 # potato timer
 npm i -g potato-timer
@@ -140,12 +155,12 @@ sudo apt-get -fy install pulseeffects pulseaudio
 # dunst
 sudo apt-get -fy install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
 git clone https://github.com/dunst-project/dunst.git ~/github.com/dunst
-cd ~/github.com/dunst
+pushd ~/github.com/dunst
 make
 sudo make install
 make dunstify
 cp -vs $(pwd)/dunstify ~/.local/bin/
-cd ~/.rice
+popd
 
 # update mlocate db
 sudo updatedb

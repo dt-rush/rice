@@ -11,4 +11,4 @@ case $profile in
         filelist="~/vimwiki/Tasks.wiki"
         ;;
 esac
-terminator --title "scratch-edit${1:-1}" --command "vim -n ${filelist}"
+x-terminal-emulator --title "scratch-edit${1:-1}" --command "vim -n ${filelist}"

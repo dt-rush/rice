@@ -258,8 +258,8 @@ exec --no-startup-id potato-timer-server &
 exec --no-startup-id POLYBAR_SHELL=zsh polybar example &
 # exec --no-startup-id xrandr --dpi 100 &
 exec --no-startup-id redshift -l geoclue2 &
-# exec --no-startup-id compton &
-exec --no-startup-id xcompmgr -n &
+exec --no-startup-id compton &
+# exec --no-startup-id xcompmgr -n &
 exec --no-startup-id xbindkeys &
 exec --no-startup-id ~/bin/battery-warn-cron.js
 exec_always --no-startup-id ~/bin/wallpaper randomcity

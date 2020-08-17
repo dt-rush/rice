@@ -93,12 +93,13 @@ source ~/.zshenv
 #
 #
 #
-#    PART 2/2: CONFIGURE FOR SOFTWARE PACKAGES
+#    PART 2/2: MISC CONFIGURE (mainly path stuff)
 #
 #
 #
 #
 
+# go
 export GOROOT=/usr/local/go/
 export PATH=$PATH:$GOROOT/bin
 export GOPATH=~/go
@@ -112,3 +113,6 @@ export NVM_DIR="/home/dt/.nvm"
 
 # export path to cache for other programs (like dmenu) which want this path but don't want to run all of .zshrc
 echo "$PATH" > /tmp/ZSH_PATH_CACHE
+
+# rust
+export PATH=$PATH:$HOME/.cargo/bin

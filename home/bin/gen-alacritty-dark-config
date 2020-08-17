@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sed -r 's/\*light/\*dark/' ~/.config/alacritty/alacritty.yml > ~/.config/alacritty/alacritty.yml.dark

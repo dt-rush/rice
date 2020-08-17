@@ -1,3 +1,4 @@
 #!/bin/bash
 
-terminator -p dark --title "scratch-music" --command "ncmpcpp"
+gen-alacritty-dark-config
+x-terminal-emulator --config-file=$HOME/.config/alacritty/alacritty.yml.dark --title "scratch-music" --command "ncmpcpp"
