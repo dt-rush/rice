@@ -11,4 +11,6 @@ case $profile in
         filelist="~/vimwiki/Tasks.wiki"
         ;;
 esac
-x-terminal-emulator --title "scratch-edit${1:-1}" --command "vim -n ${filelist}"
+
+gen-alacritty-dark-config
+x-terminal-emulator --config-file=$HOME/.config/alacritty/alacritty.yml.dark --title "scratch-edit${1:-1}" --command bash -c "vim -n ${filelist}"
