@@ -25,7 +25,7 @@ alert = #bd2c40
 
 modules-left = i3 tasks
 modules-center = potatotimer
-modules-right = pulseaudio wlan eth memory cpu temperature date battery tao
+modules-right = pulseaudio wlan eth memory cpu temperature betterdate battery tao
 
 bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -230,6 +230,16 @@ format-underline = #0a6cf5
 ; format-background = #008
 
 label = %date% %time%
+
+[module/betterdate]
+type = custom/script
+interval = 1
+click-left = if [ -f /tmp/date_args ]; then rm /tmp/date_args; else echo "--utc" > /tmp/date_args; fi
+exec = date "+%Y-%m-%d %H:%M %Z" $(cat /tmp/date_args 2>/dev/null) | sed -r 's/(UTC)/%{B#009900} \1 %{B-}/'
+format-prefix = 
+format-prefix-foreground = ${colors.foreground-alt}
+format-underline = #0a6cf5
+; format-background = #008
 
 [module/pulseaudio]
 type = internal/pulseaudio
