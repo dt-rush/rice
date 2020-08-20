@@ -261,6 +261,7 @@ exec --no-startup-id redshift -l geoclue2 &
 exec --no-startup-id compton &
 # exec --no-startup-id xcompmgr -n &
 exec --no-startup-id xbindkeys &
+exec --no-startup-id imwheel -b "4 5" &
 exec --no-startup-id ~/bin/battery-warn-cron.js
 exec_always --no-startup-id ~/bin/wallpaper randomcity
 

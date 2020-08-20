@@ -30,6 +30,10 @@ mkdir ~/.ssh/
 header "COPY HOME"
 cp -r ./home/. ~
 
+# copy etc dir
+header "COPY HOME"
+sudo cp -r ./etc/. /etc/
+
 # allow bitmap fonts
 sudo rm /etc/fonts/conf.d/70-no-bitmaps.conf
 
@@ -137,7 +141,7 @@ sudo apt-get -fy install \
    dmenu ncmpcpp autojump \
    feh nautilus gpicview gsimplecal \
    gnome-screenshot redshift compton \
-   xbindkeys jq
+   xbindkeys imwheel jq
 # potato timer
 npm i -g potato-timer
 # mopidy
