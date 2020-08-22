@@ -126,7 +126,7 @@ curl https://sh.rustup.rs -sSf | sh -s -- -y
 PATH=$PATH:~/.cargo/bin
 rustup override set stable
 rustup update stable
-git clone https://github.com/alacritty ~/github.com/alacritty
+git clone https://github.com/alacritty/alacritty ~/github.com/alacritty
 pushd ~/github.com/alacritty
 cargo build --release
 sudo cp ./target/release/alacritty /usr/local/bin/
