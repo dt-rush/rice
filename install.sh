@@ -17,6 +17,7 @@ sudo apt-get -fy install \
     software-properties-common psmisc \
     openssh-server openssh-client \
     mlocate alsa-utils \
+    xclip \
     autoconf vim-gtk xorg zsh
 sudo apt-file update
 
