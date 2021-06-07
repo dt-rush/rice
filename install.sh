@@ -94,7 +94,7 @@ mkdir ~/go/
 rm go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
 
 # install python
-sudo apt-get install python python3 python3-pip python-pip
+sudo apt-get install python python3 python3-pip python-pip python3-virtualenv virtualenv
 
 # install docker
 header "INSTALL DOCKER"
