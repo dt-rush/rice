@@ -9,7 +9,7 @@
 
 export PATH=$PATH:$HOME/bin
 
-export ZSH=/home/dt/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="agnoster-light"
 plugins=(git lol colored-man-pages shrink-path zsh-autosuggestions auto-ls zsh-completions kubectl)
 ZSH_DISABLE_COMPFIX=true
@@ -81,7 +81,7 @@ fi
 
 # source bash completions
 if [ "$(ls -A ~/.bash_completion.d)" ]; then
-    source /home/dt/.bash_completion.d/*
+    source $HOME/.bash_completion.d/*
 fi
 
 # source alias file
@@ -107,7 +107,7 @@ export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOBIN
 
 # nvm
-export NVM_DIR="/home/dt/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 

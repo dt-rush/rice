@@ -16,7 +16,7 @@ sudo apt-get -fy install \
     curl gnupg-agent rsync mtr gwhois \
     software-properties-common psmisc \
     openssh-server openssh-client \
-    mlocate \
+    mlocate alsa-utils \
     autoconf vim-gtk xorg zsh
 sudo apt-file update
 
@@ -63,12 +63,11 @@ pushd ~/github.com/i3gaps
 sudo apt-get -fy install \
     dh-autoreconf libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev xcb libxcb1-dev libxcb-icccm4-dev libyajl-dev libev-dev libxcb-xkb-dev libxcb-cursor-dev libxkbcommon-dev libxcb-xinerama0-dev libxkbcommon-x11-dev libstartup-notification0-dev libxcb-randr0-dev libxcb-xrm0 libxcb-xrm-dev libxcb-shape0 libxcb-shape0-dev
 # build
-autoreconf --force --install
-rm -rf build/
-mkdir -p build/ && cd build/
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-make -j8
-sudo make install
+mkdir build
+cd build
+meson ..
+ninja
+sudo cp ./i3* /usr/local/bin/
 cd .. && rm -rf build
 popd
 
@@ -76,7 +75,7 @@ popd
 header "INSTALL NVM"
 NVM_VERSION=v0.35.3
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash
-export NVM_DIR="/home/dt/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -115,7 +114,6 @@ rm google-chrome-stable_current_amd64.deb
 # install polybar
 header "INSTALL POLYBAR"
 sudo apt-add-repository 'deb http://deb.debian.org/debian buster-backports main contrib non-free'
-sudo apt-add-repository 'deb-src http://deb.debian.org/debian buster-backports main contrib non-free'
 sudo apt-get update
 sudo apt -t buster-backports -fy install polybar
 
@@ -151,11 +149,11 @@ sudo python3 -m pip install Mopidy-MPD
 # i3lock-multimonitor
 sudo apt-get -fy install imagemagick i3lock
 git clone https://github.com/shikherverma/i3lock-multimonitor.git ~/github.com/i3lock-multimonitor
-cp -r ~/github.com/i3lock-multimonitor ~/.i3
-chmod +x ~/.i3/i3lock-multimonitor/lock
+cp -r ~/github.com/i3lock-multimonitor/lock ~/.i3/
+chmod +x ~/.i3/lock
 # pulseaudio / pulseeffects
 sudo apt-get remove libpulse0
-sudo apt-get -fy install pulseeffects pulseaudio
+sudo apt-get -fy install pulseeffects pulseaudio pavucontrol
 # dunst
 sudo apt-get -fy install libdbus-1-dev libx11-dev libxinerama-dev libxrandr-dev libxss-dev libglib2.0-dev libpango1.0-dev libgtk-3-dev libxdg-basedir-dev libnotify-dev
 git clone https://github.com/dunst-project/dunst.git ~/github.com/dunst
