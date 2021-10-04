@@ -116,3 +116,8 @@ echo "$PATH" > /tmp/ZSH_PATH_CACHE
 
 # rust
 export PATH=$PATH:$HOME/.cargo/bin
+
+if [[ "$SSH_AUTH_SOCK" = "" ]]; then
+    eval `ssh-agent`
+fi
+ssh-add ~/.ssh/id_rsa 2> /dev/null
