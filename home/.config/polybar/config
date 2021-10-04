@@ -25,7 +25,7 @@ alert = #bd2c40
 
 modules-left = i3 tasks
 modules-center = potatotimer
-modules-right = pulseaudio wlan eth memory cpu temperature betterdate battery tao
+modules-right = pulseaudio wlan eth memory cpu temperature betterdate battery tao bell
 
 bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -53,10 +53,10 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-font-3 = Monaco for Powerline:style=Regular:pixelsize=10:size=10;1
+font-0 = fixed:pixelsize=12;1
+font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
+font-2 = siji:pixelsize=14;1
+font-3 = Monaco for Powerline:style=Regular:pixelsize=14:size=10;1
 font-4 = Monaco for Powerline:style=Regular:pixelsize=18:size=18;1
 
 tray-padding = 2
@@ -178,7 +178,7 @@ label = MEM %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
+interface = wlp0s20f3
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
@@ -380,8 +380,17 @@ format-font = 4
 [module/tao]
 type = custom/text
 click-left = ~/bin/randomtao/window.sh
-content = " ☯ "
+content = "☯"
 content-background = #002b36
+content-foreground = #FFF
+content-font = 5
+content-margin-right = 0
+
+[module/bell]
+type = custom/text
+click-left = nvlc ~/bin/Meditation-bell-sound.mp3
+content = "☸"
+content-background = #005b86
 content-foreground = #FFF
 content-font = 5
 content-margin-right = 0
