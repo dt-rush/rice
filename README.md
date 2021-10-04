@@ -30,4 +30,6 @@ cd .rice
 ./install.sh
 ```
 
+Alternatively, run sections of `install.sh` one at a time, inserting `exit` commands manually.
+
 3. reboot and log in, x should start. Open a terminal and run `~/.rice/xinstall.sh` to install fonts

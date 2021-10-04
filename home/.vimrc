@@ -370,9 +370,9 @@ let g:airline#extensions#tabline#left_alt_sep = ' '
 set t_Co=256
 " set background=light
 set background=dark
-" colorscheme jellybeans
+colorscheme jellybeans
 " colorscheme peachpuff
-colorscheme solarized
+" colorscheme solarized
 " colorscheme monochrome
 set mouse=a
 

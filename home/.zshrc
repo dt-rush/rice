@@ -10,7 +10,7 @@
 export PATH=$PATH:$HOME/bin
 
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="agnoster-light"
+ZSH_THEME="agnoster"
 plugins=(git lol colored-man-pages shrink-path zsh-autosuggestions auto-ls zsh-completions kubectl)
 ZSH_DISABLE_COMPFIX=true
 source $ZSH/oh-my-zsh.sh
