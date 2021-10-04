@@ -6,7 +6,7 @@ MONITOR="HDMI-1"
 MONITOR_STATUS=$(xrandr | grep ${MONITOR})
 
 # if monitor not connected, go to builtin by default
-if [ ! "$(echo ${MONITOR_STATUS} | grep \"connected\")" ]; then
+if [ ! "$(echo ${MONITOR_STATUS} | grep ' connected ')" ]; then
     xrandr --output ${BUILTIN} --auto
     exit 0
 else
