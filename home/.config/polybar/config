@@ -23,9 +23,10 @@ alert = #bd2c40
 
 [bar/example]
 
+; modules-left = i3 tasks accesstoinsightscroll
 modules-left = i3 tasks
-modules-center = potatotimer
-modules-right = pulseaudio wlan eth memory cpu temperature betterdate battery tao bell
+; modules-center = potatotimer
+modules-right = pulseaudio wlan eth restartnet memory cpu temperature betterdate battery tao bell
 
 bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -56,7 +57,7 @@ module-margin-right = 2
 font-0 = fixed:pixelsize=12;1
 font-1 = unifont:fontformat=truetype:size=12:antialias=false;0
 font-2 = siji:pixelsize=14;1
-font-3 = Monaco for Powerline:style=Regular:pixelsize=14:size=10;1
+font-3 = Monaco for Powerline:style=Regular:pixelsize=10:size=10;1
 font-4 = Monaco for Powerline:style=Regular:pixelsize=18:size=18;1
 
 tray-padding = 2
@@ -357,6 +358,12 @@ interval = 0.1
 format-underline = #800
 format-font = 4
 
+[module/accesstoinsightscroll]
+type = custom/script
+exec = accesstoinsightscroll.sh
+tail = true
+format = <label>
+
 [module/potatotimer]
 type = custom/script
 click-left = potato-timer-cli start-timer
@@ -377,6 +384,14 @@ format-background = #fdf6e3
 format-foreground = #000
 format-font = 4
 
+[module/restartnet]
+type = custom/text
+click-left = ~/bin/restartnet
+content = "↺"
+content-background = #660000
+content-foreground = #FFF
+content-font = 5
+
 [module/tao]
 type = custom/text
 click-left = ~/bin/randomtao/window.sh
@@ -388,7 +403,7 @@ content-margin-right = 0
 
 [module/bell]
 type = custom/text
-click-left = nvlc ~/bin/Meditation-bell-sound.mp3
+click-left = mplayer ~/bin/Meditation-bell-sound.mp3 -volume 50
 content = "☸"
 content-background = #005b86
 content-foreground = #FFF

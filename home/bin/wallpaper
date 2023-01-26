@@ -4,6 +4,8 @@ if [ "$1" == "default" ]; then
     feh --bg-max ~/Pictures/wallpapers/current &
 elif [ "$1" == "randomcity" ]; then
     feh --bg-fill ~/Pictures/wallpapers/cities/$(ls ~/Pictures/wallpapers/cities | shuf -n 1) &
+elif [ "$1" == "black" ]; then
+    feh --bg-fill ~/Pictures/wallpapers/black/$(ls ~/Pictures/wallpapers/black | shuf -n 1) &
 else
     feh --bg-max ~/Pictures/wallpapers/fun &
 fi

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+pid_file="/tmp/hourly_bell.pid"
+
+# Check if the pid file exists
+if [ -f $pid_file ]; then
+    # Read the stored PID from the file
+    stored_pid=$(cat $pid_file)
+    # Check if the stored PID is still running
+    if kill -0 $stored_pid > /dev/null 2>&1; then
+        # If the stored PID is still running, exit the script
+        echo "Another instance of the script is already running with PID $stored_pid"
+        kill -9 $stored_pid
+    fi
+    rm $pid_file
+fi
+
+# Store the current PID in the pid file
+echo $$ > $pid_file
+
+trap "rm $pid_file" EXIT
+
+
+
+while :
+do
+    mplayer ~/bin/Meditation-bell-sound.mp3 -volume 50
+    sleep 3600
+done
+
+
+

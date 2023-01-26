@@ -6,7 +6,7 @@ set $mod Mod4
 floating_modifier $mod
 popup_during_fullscreen smart
 
-gaps inner 20
+gaps inner 10
 gaps outer 0
 
 for_window [class="^.*"] border pixel 0
@@ -157,7 +157,7 @@ exec --no-startup-id pavucontrol
 # pulseeffects
 for_window [title="^PulseEffects$"] mark "scratch-eq", move absolute position 200 px 200 px, resize set 800 px 600 px, move scratchpad
 bindsym $mod+shift+v [con_mark="scratch-eq"] scratchpad show
-exec --no-startup-id pulseeffects
+# exec --no-startup-id pulseeffects
 
 # chrome tabs outliner
 for_window [title="^Tabs Outliner$"] mark "scratch-tabs", move absolute position 0 px 0 px, move scratchpad
@@ -214,7 +214,7 @@ bindsym $mod+esc exec --no-startup-id ~/bin/restore_monitor.sh
 # Audio Controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id amixer set Master 1+ toggle
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Brightness controls
 bindsym XF86MonBrightnessUp exec ~/bin/brightness.sh +10
@@ -238,10 +238,10 @@ bindsym control+mod1+e exec --no-startup-id x-terminal-emulator --command vim
 
 
 # Print screen
-bindsym --release Print exec gnome-screenshot -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
-bindsym --release control+shift+F5 exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
-bindsym --release Control+Print exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
-bindsym --release Shift+Print exec gnome-screenshot --window -f "Pictures/screenshots/$(date --utc '+%F_%T').png"
+bindsym --release Print exec gnome-screenshot -f "Pictures/screenshots/$(date --utc '+%F_%H-%M-%S').png"
+bindsym --release control+shift+F5 exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%H-%M-%S').png"
+bindsym --release Control+Print exec gnome-screenshot --area -f "Pictures/screenshots/$(date --utc '+%F_%H-%M-%S').png"
+bindsym --release Shift+Print exec gnome-screenshot --window -f "Pictures/screenshots/$(date --utc '+%F_%H-%M-%S').png"
 
 bindsym $mod+g exec --no-startup-id gender-fr
 # bindsym control+mod1+l exec --no-startup-id i3lock-fancy -p -- scrot -z
@@ -254,16 +254,18 @@ bindsym $mod+c exec --no-startup-id gsimplecal
 #
 exec --no-startup-id bash ~/.xinitrc &
 exec --no-startup-id mopidy &
-exec --no-startup-id potato-timer-server &
+# exec --no-startup-id potato-timer-server &
 exec --no-startup-id POLYBAR_SHELL=zsh polybar example &
 # exec --no-startup-id xrandr --dpi 100 &
-exec --no-startup-id redshift -l geoclue2 &
+# exec --no-startup-id redshift -l geoclue2 &
 exec --no-startup-id compton &
 # exec --no-startup-id xcompmgr -n &
 exec --no-startup-id xbindkeys &
 exec --no-startup-id imwheel -b "4 5" &
-exec --no-startup-id ~/bin/battery-warn-cron.js
-exec_always --no-startup-id ~/bin/wallpaper randomcity
+exec --no-startup-id ~/bin/battery-warn-cron.js & 
+# exec_always --no-startup-id ~/bin/wallpaper randomcity
+exec_always --no-startup-id ~/bin/wallpaper black & 
+exec_always --no-startup-id ~/bin/hourly_bell &
 
 # python script defining more complex actions once all the above is done
 exec_always --no-startup-id ~/bin/i3-exec-always.py 2>&1 | tee .i3_exec_always.log &
