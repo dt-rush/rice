@@ -8,4 +8,4 @@
 # greatest help. True words seem paradoxical.
 
 gen-alacritty-dark-config
-x-terminal-emulator --config-file=$HOME/.config/alacritty/alacritty.yml.dark --title "float-tao" --command bash -c "~/bin/randomtao/random.js && sleep 30"
+x-terminal-emulator --config-file=$HOME/.config/alacritty/alacritty.yml.dark --title "float-tao" --command zsh -c "source ~/.zshrc && ~/bin/randomtao/random.js && sleep 30"
